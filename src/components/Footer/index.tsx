@@ -52,10 +52,7 @@ const SocialButton = ({
 
 export function Footer() {
   return (
-    <Box
-      bg={useColorModeValue('gray.50', 'gray.900')}
-      color={useColorModeValue('gray.700', 'gray.200')}
-    >
+    <Box bg={'bgNavbar'} color="gray.300">
       <Container
         as={Stack}
         maxW={'6xl'}
@@ -67,31 +64,35 @@ export function Footer() {
         {/* <Img src={} w="9rem" /> */}
         <Stack direction={'row'} spacing={6}>
           <Link as={ReactRouter} to={'/'} style={{ textDecoration: 'none' }}>
-            <Text _hover={{ color: 'orange.400' }}>Home</Text>
+            <Text _hover={{ color: 'blue.400' }}>Início</Text>
           </Link>
           <Link
             as={ReactRouter}
             to={'/Jeri'}
             style={{ textDecoration: 'none' }}
           >
-            <Text _hover={{ color: 'orange.400' }}>Prêmios</Text>
+            <Text _hover={{ color: 'blue.400' }}>Sobre</Text>
           </Link>
           <Link
             as={ReactRouter}
             to={'/Pacotes'}
             style={{ textDecoration: 'none' }}
           >
-            <Text _hover={{ color: 'orange.400' }}>Pacotes</Text>
+            <Text _hover={{ color: 'blue.400' }}>Cronograma</Text>
           </Link>
-          {/* <Link as={ReactRouter} to={'/'} style={{ textDecoration: 'none' }}>
-            Doação
-          </Link> */}
           <Link
             as={ReactRouter}
             to={'/Pacotes'}
             style={{ textDecoration: 'none' }}
           >
-            <Text _hover={{ color: 'orange.400' }}>Comprar bilhete</Text>
+            <Text _hover={{ color: 'blue.400' }}>FAQ</Text>
+          </Link>
+          <Link
+            as={ReactRouter}
+            to={'/Pacotes'}
+            style={{ textDecoration: 'none' }}
+          >
+            <Text _hover={{ color: 'blue.400' }}>Contato</Text>
           </Link>
         </Stack>
       </Container>
@@ -118,7 +119,7 @@ export function Footer() {
             isExternal
             style={{ textDecoration: 'none' }}
           >
-            <Text _hover={{ color: 'orange.400' }} fontSize={'small'}>
+            <Text _hover={{ color: 'blue.400' }} fontSize={'small'}>
               Desenvolvido por GouTech Digital
             </Text>
           </Link>

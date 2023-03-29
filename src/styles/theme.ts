@@ -7,10 +7,9 @@ export const theme = extendTheme({
   },
   colors: {
     bgNavbar: '#232323',
-    mpBlue: {
-      500: '#00bcff',
-      600: '#008bc8',
-      700: '#0a0080',
+    bgCard: '#f6f6f6',
+    blueLetter: {
+      500: '#24608B',
     },
   },
   styles: {
