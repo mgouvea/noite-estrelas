@@ -8,7 +8,9 @@ export const theme = extendTheme({
   colors: {
     bgNavbar: '#232323',
     bgCard: '#f6f6f6',
+    bgCardBlue: '#5e7589',
     blueLetter: {
+      400: '#2f78ad',
       500: '#24608B',
     },
   },
