@@ -28,6 +28,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { Link as ReactRouter, useNavigate } from 'react-router-dom';
 
 import logo from '../../assets/logo.png';
+import logoSvg from '../../assets/logo.svg';
 import { ReactNode } from 'react';
 
 const SocialButton = ({
@@ -111,9 +112,9 @@ export function Navbar() {
           >
             <Link as={ReactRouter} to={'/'}>
               <Img
-                src={logo}
+                src={isWideVersion ? logo : logoSvg}
                 alt="Viagem com o rei"
-                boxSize="3rem"
+                boxSize={isWideVersion ? '3rem' : '2.5rem'}
                 w={isWideVersion ? '100%' : '90%'}
                 objectFit="contain"
                 ml={isWideVersion ? '2rem' : ''}
@@ -145,7 +146,7 @@ export function Navbar() {
                 fontWeight={600}
                 colorScheme="whiteAlpha"
                 variant={'outline'}
-                onClick={() => navigate('/Pacotes')}
+                onClick={() => navigate('/inscricao')}
               >
                 Inscrição
               </Button>
@@ -253,7 +254,8 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 const MobileNav = () => {
   return (
     <Stack
-      bg={useColorModeValue('white', 'gray.800')}
+      // bg={useColorModeValue('white', 'gray.800')}
+      bg="bgNavbar"
       p={4}
       display={{ md: 'none' }}
     >
@@ -281,7 +283,8 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
       >
         <Text
           fontWeight={600}
-          color={useColorModeValue('gray.600', 'gray.200')}
+          color="gray.400"
+          // color={useColorModeValue('gray.600', 'gray.200')}
         >
           {label}
         </Text>

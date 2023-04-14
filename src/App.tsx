@@ -1,5 +1,6 @@
 import { Box } from '@chakra-ui/react';
 import { Atividades } from './components/Atividades';
+import { Faqs } from './components/Faqs';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { OqLevar } from './components/OqLevar';
@@ -16,6 +17,7 @@ function App() {
       <Testemonials />
       <Price />
       <OqLevar />
+      <Faqs />
       <Footer />
     </Box>
   );

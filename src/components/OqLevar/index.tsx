@@ -1,4 +1,12 @@
-import { Box, Flex, Heading, Image, SimpleGrid, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Heading,
+  Image,
+  SimpleGrid,
+  Text,
+  useBreakpointValue,
+} from '@chakra-ui/react';
 import { List } from './List';
 
 import bgFundo from '../../assets/ceuEstreladoAzul.png';
@@ -10,6 +18,10 @@ import PleImg from '../../assets/byTelescope/Pleiades.svg';
 import saturnoImg from '../../assets/byTelescope/Saturno.svg';
 
 export function OqLevar() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
   return (
     <Flex
       // h={[null, '70vh']}
@@ -17,6 +29,7 @@ export function OqLevar() {
       bgRepeat="no-repeat"
       bgPosition={'center'}
       bgSize="cover"
+      pb="2rem"
     >
       <Flex w="100%">
         <SimpleGrid columns={[1, 2]} w="100%">
@@ -43,6 +56,7 @@ export function OqLevar() {
               h={['36rem', '28.75rem']}
               borderRadius="0.3rem"
               bgImage={bgFundoCard}
+              mx="1rem"
             >
               <Box
                 h="60px"

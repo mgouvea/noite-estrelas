@@ -6,32 +6,48 @@ import {
   Icon,
   SimpleGrid,
   Text,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { Gallery } from './Gallery';
-// import {
-//   barracaIcon,
-//   cameraIcon,
-//   campIcon,
-//   carroIcon,
-//   coffeeIcon,
-//   fazendaIcon,
-//   fogueiraIcon,
-//   foodIcon,
-//   moonIcon,
-//   planetIcon,
-//   sunriseIcon,
-// } from '../../utils/icons';
+import {
+  barracaIcon,
+  cameraIcon,
+  campIcon,
+  carroIcon,
+  coffeeIcon,
+  fazendaIcon,
+  fogueiraIcon,
+  foodIcon,
+  moonIcon,
+  planetIcon,
+  sunriseIcon,
+} from '../../utils/icons';
 
 export function Timeline() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
   return (
     <Flex direction="column" h="100%" bg="iceWhite">
       <SimpleGrid columns={1}>
-        <Flex direction="column" align={'center'}>
-          <Box w="50rem">
-            <Gallery />
-          </Box>
-        </Flex>
-        <Flex direction="column" align="center" color="titleContrast" pb="1rem">
+        {isWideVersion ? (
+          <Flex direction="column" align={'center'}>
+            <Box w="50rem">
+              <Gallery />
+            </Box>
+          </Flex>
+        ) : (
+          ''
+        )}
+
+        <Flex
+          direction="column"
+          align="center"
+          color="titleContrast"
+          pb="1rem"
+          pt="2rem"
+        >
           <Heading fontSize="2.25rem" fontWeight="bold">
             Cronograma
           </Heading>
@@ -65,7 +81,7 @@ export function Timeline() {
                 mb="1rem"
                 align="center"
               >
-                {/* <Icon as={carroIcon} fontSize="6xl" /> */}
+                <Icon as={carroIcon} fontSize="6xl" />
                 <Flex direction="column" mt="0.3rem">
                   <Text textAlign="center" fontWeight="bold">
                     15H
@@ -88,7 +104,7 @@ export function Timeline() {
                 align="center"
                 mb="1rem"
               >
-                {/* <Icon as={fazendaIcon} fontSize="6xl" /> */}
+                <Icon as={fazendaIcon} fontSize="6xl" />
                 <Flex direction="column" mt="0.3rem">
                   <Text textAlign="center" fontWeight="bold">
                     15:30H
@@ -107,7 +123,7 @@ export function Timeline() {
                 align="center"
                 mb="1rem"
               >
-                {/* <Icon as={barracaIcon} fontSize="6xl" /> */}
+                <Icon as={barracaIcon} fontSize="6xl" />
                 <Flex direction="column" mt="0.3rem">
                   <Text textAlign="center" fontWeight="bold">
                     16H
@@ -126,7 +142,7 @@ export function Timeline() {
                 align="center"
                 mb="1rem"
               >
-                {/* <Icon as={planetIcon} fontSize="6xl" /> */}
+                <Icon as={planetIcon} fontSize="6xl" />
                 <Flex direction="column" mt="0.3rem">
                   <Text textAlign="center" fontWeight="bold">
                     18:45H
@@ -148,7 +164,7 @@ export function Timeline() {
                 align="center"
                 mb="1rem"
               >
-                {/* <Icon as={foodIcon} fontSize="6xl" /> */}
+                <Icon as={foodIcon} fontSize="6xl" />
                 <Flex direction="column" mt="0.3rem">
                   <Text textAlign="center" fontWeight="bold">
                     20H
@@ -167,7 +183,7 @@ export function Timeline() {
                 align="center"
                 mb="1rem"
               >
-                {/* <Icon as={moonIcon} fontSize="6xl" /> */}
+                <Icon as={moonIcon} fontSize="6xl" />
                 <Flex direction="column" mt="0.3rem">
                   <Text textAlign="center" fontWeight="bold">
                     21H
@@ -189,7 +205,7 @@ export function Timeline() {
                 align="center"
                 mb="1rem"
               >
-                {/* <Icon as={fogueiraIcon} fontSize="6xl" /> */}
+                <Icon as={fogueiraIcon} fontSize="6xl" />
                 <Flex direction="column" mt="0.3rem">
                   <Text textAlign="center" fontWeight="bold">
                     22H
@@ -225,7 +241,7 @@ export function Timeline() {
                 h="130px"
                 align="center"
               >
-                {/* <Icon as={sunriseIcon} fontSize="6xl" /> */}
+                <Icon as={sunriseIcon} fontSize="6xl" />
                 <Flex direction="column" mt="0.3rem">
                   <Text textAlign="center" fontWeight="bold">
                     7H
@@ -242,7 +258,7 @@ export function Timeline() {
                 h="130px"
                 align="center"
               >
-                {/* <Icon as={coffeeIcon} fontSize="6xl" /> */}
+                <Icon as={coffeeIcon} fontSize="6xl" />
                 <Flex direction="column" mt="0.3rem">
                   <Text textAlign="center" fontWeight="bold">
                     7:30H
@@ -259,7 +275,7 @@ export function Timeline() {
                 h="130px"
                 align="center"
               >
-                {/* <Icon as={campIcon} fontSize="6xl" /> */}
+                <Icon as={campIcon} fontSize="6xl" />
                 <Flex direction="column" mt="0.3rem">
                   <Text textAlign="center" fontWeight="bold">
                     9:30H
@@ -276,7 +292,7 @@ export function Timeline() {
                 h="130px"
                 align="center"
               >
-                {/* <Icon as={cameraIcon} fontSize="6xl" /> */}
+                <Icon as={cameraIcon} fontSize="6xl" />
                 <Flex direction="column" mt="0.3rem">
                   <Text textAlign="center" fontWeight="bold">
                     10H
@@ -293,7 +309,7 @@ export function Timeline() {
                 h="130px"
                 align="center"
               >
-                {/* <Icon as={carroIcon} fontSize="6xl" /> */}
+                <Icon as={carroIcon} fontSize="6xl" />
                 <Flex direction="column" mt="0.3rem">
                   <Text textAlign="center" fontWeight="bold">
                     10:45H

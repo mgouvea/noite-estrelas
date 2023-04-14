@@ -7,16 +7,12 @@ import {
   Text,
   VStack,
   useColorModeValue,
-  List,
-  ListItem,
-  ListIcon,
   Button,
   Divider,
   SimpleGrid,
   Flex,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { FaCheckCircle } from 'react-icons/fa';
 
 import bgCeuImg from '../../assets/ceuEstreladoAzulClaro.png';
 
@@ -70,7 +66,13 @@ export function Price() {
         py={10}
       >
         <PriceWrapper>
-          <Box py={4} px={12} bg="white" borderRadius={'8px'} mb="1.2rem">
+          <Box
+            py={4}
+            px={12}
+            bg="white"
+            borderRadius={'8px'}
+            mb={isWideVersion ? '1.2rem' : '-1rem'}
+          >
             <Box>
               <Text fontWeight="500" fontSize="xl" color="blueLetter.500">
                 Baby
@@ -96,7 +98,7 @@ export function Price() {
           <Box py={4} px={12} bg="white" borderRadius={'8px'}>
             <Box>
               <Text fontWeight="500" fontSize="xl" color="blueLetter.500">
-                Criança
+                Criança/Jovem
               </Text>
               <Text fontWeight="500" fontSize="sm" color="blueLetter.500">
                 (Entre 5 e 14 anos)
@@ -121,10 +123,10 @@ export function Price() {
           <Box py={4} px={12} bg="white" borderRadius={'8px'}>
             <Box>
               <Text fontWeight="500" fontSize="xl" color="blueLetter.500">
-                Baby
+                Adulto
               </Text>
               <Text fontWeight="500" fontSize="sm" color="blueLetter.500">
-                (Até 4 anos)
+                (Acima de 14)
               </Text>
               <Divider colorScheme={'blue'} />
             </Box>

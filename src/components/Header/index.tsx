@@ -22,8 +22,9 @@ export function Header() {
       <Navbar />
       <Box
         textAlign="left"
-        pt={'15rem'}
-        pl={'10rem'}
+        // pt={'15rem'}
+        pl={isWideVersion ? '10rem' : '2rem'}
+        pt={isWideVersion ? '10rem' : '10rem'}
         height="70vh"
         bgImage={bgInicio}
         bgRepeat="no-repeat"
@@ -31,13 +32,17 @@ export function Header() {
         bgPosition="center"
       >
         <Flex>
-          <Img
-            src={logo}
-            alt="logo noite nas estrelas"
-            boxSize="9.5rem"
-            objectFit="contain"
-            mr={isWideVersion ? '2rem' : ''}
-          />
+          {isWideVersion ? (
+            <Img
+              src={logo}
+              alt="logo noite nas estrelas"
+              boxSize="9.5rem"
+              objectFit="contain"
+              mr={isWideVersion ? '2rem' : ''}
+            />
+          ) : (
+            ''
+          )}
           <Box>
             <Heading
               display="inline-block"
@@ -48,7 +53,12 @@ export function Header() {
             >
               Noite nas Estrelas
             </Heading>
-            <Text color={'gray.100'} mb={6} mt={2} fontSize="1.3rem">
+            <Text
+              color={'gray.100'}
+              mb={6}
+              mt={2}
+              fontSize={isWideVersion ? '1.3rem' : '1.1rem'}
+            >
               Um acampamento astronômico inesquecível para toda a família!
             </Text>
           </Box>
@@ -60,8 +70,9 @@ export function Header() {
           color="white"
           variant="solid"
           ml="0.2rem"
-          mt="3rem"
-          w="10rem"
+          mt={isWideVersion ? '3rem' : '2rem'}
+          w={isWideVersion ? '10rem' : '9rem'}
+          // w="10rem"
           fontSize={'lg'}
         >
           Inscreva-se
