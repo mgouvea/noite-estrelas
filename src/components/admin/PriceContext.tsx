@@ -7,22 +7,28 @@ import {
   FormControl,
   Input,
   Flex,
+  useToast,
 } from '@chakra-ui/react';
 
 import { useForm } from 'react-hook-form';
 
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { api } from '../../services/api';
+import { useEffect, useState } from 'react';
 
 const createPriceSchema = z.object({
-  child: z.string().nonempty('O valor é obrogatório'),
-  teen: z.string().nonempty('O valor  é obrogatório'),
-  adult: z.string().nonempty('O valor é obrogatório'),
+  child: z.coerce.number().nonnegative().int(),
+  teen: z.coerce.number().nonnegative().int(),
+  adult: z.coerce.number().nonnegative().int(),
 });
 
 type CreatePriceFormData = z.infer<typeof createPriceSchema>;
 
 export function PriceContext() {
+  const toast = useToast();
+  const [hasPrice, setHasPrice] = useState(false);
+  const [idDataPrice, setIdDataPrice] = useState('');
   const {
     register,
     handleSubmit,
@@ -32,8 +38,77 @@ export function PriceContext() {
     resolver: zodResolver(createPriceSchema),
   });
 
-  function savePrice(data: CreatePriceFormData) {
+  const getPrices = async () => {
+    await api.get('/tickets').then((resp) => {
+      if (resp?.data) {
+        console.log(resp?.data.map((i: any) => i._id));
+        setHasPrice(true);
+        setIdDataPrice(resp?.data.map((i: any) => i._id));
+      } else {
+        setHasPrice(false);
+      }
+    });
+  };
+
+  useEffect(() => {
+    getPrices();
+  }, []);
+
+  const headers = {
+    'Content-Type': 'application/json;charset=utf-8',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
+  };
+
+  const putOrPost = async (hasId: boolean, myData: CreatePriceFormData) => {
+    if (hasId) {
+      await api
+        .put(`/tickets/${idDataPrice}`, myData, { headers })
+        .then(async function (response) {
+          toast({
+            title: 'Preço salvo com sucesso',
+            description: 'Você acabou de atualizar os preços do evento',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+          });
+        })
+        .catch(function (error) {
+          console.error('err', error);
+        });
+    } else {
+      await api
+        .post('/tickets', myData, { headers })
+        .then(async function (response) {
+          toast({
+            title: 'Preço salvo com sucesso',
+            description: 'Você acabou de atualizar os preços do evento',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+          });
+        })
+        .catch(function (error) {
+          console.error('err', error);
+        });
+    }
+  };
+
+  async function savePrice(data: CreatePriceFormData) {
     console.log(data);
+    if (data.teen === 0 || data.adult === 0) {
+      toast({
+        title: 'Preencha corretamente os campos',
+        description: 'Verifique se você preencheu todos os campos corretamente',
+        status: 'warning',
+        duration: 9000,
+        position: 'top-right',
+        isClosable: true,
+      });
+      return;
+    }
+
+    putOrPost(hasPrice, data);
   }
 
   return (

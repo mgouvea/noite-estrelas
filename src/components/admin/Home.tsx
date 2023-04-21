@@ -2,6 +2,7 @@ import { Flex, Container, Heading, Stack, Text, Box } from '@chakra-ui/react';
 import { FiChevronRight } from 'react-icons/fi';
 import { Cupom } from './Cupom';
 import { EventDateContext } from './EventDateContext';
+import { IsActive } from './IsActive';
 import { PriceContext } from './PriceContext';
 
 interface homeProps {
@@ -31,7 +32,12 @@ export function Home({ nameUser }: homeProps) {
           <EventDateContext />
           <Cupom />
         </Box>
-        <PriceContext />
+        <Flex gap={5}>
+          <PriceContext />
+          <Flex align="start">
+            <IsActive />
+          </Flex>
+        </Flex>
       </Flex>
     </>
   );
