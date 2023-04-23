@@ -8,6 +8,7 @@ import {
   Input,
   Flex,
   useToast,
+  Center,
 } from '@chakra-ui/react';
 
 import { useForm } from 'react-hook-form';
@@ -112,11 +113,11 @@ export function PriceContext() {
   }
 
   return (
-    <Flex py={3}>
+    <Center py={3}>
       <Box
         maxW={'330px'}
         w={'full'}
-        height="2md"
+        mb="0.5rem"
         bg={useColorModeValue('white', 'gray.800')}
         boxShadow={'2xl'}
         rounded={'md'}
@@ -193,7 +194,7 @@ export function PriceContext() {
 
         <Box bg={useColorModeValue('gray.50', 'gray.900')} px={6} py={3}>
           <Button
-            mt={'7.89rem'}
+            // mt={'12.6rem'}
             w={'full'}
             bg={'green.400'}
             color={'white'}
@@ -211,6 +212,6 @@ export function PriceContext() {
           </Button>
         </Box>
       </Box>
-    </Flex>
+    </Center>
   );
 }

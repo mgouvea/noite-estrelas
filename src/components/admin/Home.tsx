@@ -32,12 +32,10 @@ export function Home({ nameUser }: homeProps) {
           <EventDateContext />
           <Cupom />
         </Box>
-        <Flex gap={5}>
+        <Box>
           <PriceContext />
-          <Flex align="start">
-            <IsActive />
-          </Flex>
-        </Flex>
+          <IsActive />
+        </Box>
       </Flex>
     </>
   );
