@@ -63,7 +63,7 @@ const SocialButton = ({
   );
 };
 
-export function Navbar() {
+export function Navbar({ inscricaoAtiva }: any) {
   const { isOpen, onToggle } = useDisclosure();
 
   const isWideVersion = useBreakpointValue({
@@ -146,7 +146,10 @@ export function Navbar() {
                 fontWeight={600}
                 colorScheme="whiteAlpha"
                 variant={'outline'}
-                onClick={() => navigate('/inscricao')}
+                isDisabled={inscricaoAtiva == 'yes' ? false : true}
+                onClick={() => {
+                  inscricaoAtiva == 'yes' ? navigate('/inscricao') : '';
+                }}
               >
                 Inscrição
               </Button>

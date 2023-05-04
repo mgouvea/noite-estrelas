@@ -29,6 +29,7 @@ interface InputProps {
   background?: string;
   cursor?: string;
   hasRule?: boolean;
+  type?: string;
 }
 
 const Input = ({
@@ -48,6 +49,7 @@ const Input = ({
   background = '',
   cursor = '',
   hasRule = true,
+  type = '',
   ...props
 }: InputProps) => {
   const {
@@ -78,6 +80,7 @@ const Input = ({
         onBlur={(event) => onChange(event.target.value.trimEnd())}
         value={value}
         placeholder={placeholder}
+        type={type}
         onChange={(event) => {
           if (onChangeCustom) {
             onChange(onChangeCustom(event.target.value));

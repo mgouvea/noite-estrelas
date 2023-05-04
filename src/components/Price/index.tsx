@@ -13,6 +13,7 @@ import {
   Flex,
   useBreakpointValue,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 import bgCeuImg from '../../assets/ceuEstreladoAzulClaro.png';
 
@@ -34,11 +35,17 @@ function PriceWrapper({ children }: { children: ReactNode }) {
   );
 }
 
-export function Price() {
+export function Price({
+  inscricaoAtiva,
+  priceChild,
+  priceTeen,
+  priceAdult,
+}: any) {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
   });
+  let navigate = useNavigate();
 
   return (
     <Box
@@ -65,7 +72,7 @@ export function Price() {
         spacing={{ base: 4, lg: 10 }}
         py={10}
       >
-        <PriceWrapper>
+        {/* <PriceWrapper>
           <Box
             py={4}
             px={12}
@@ -78,7 +85,7 @@ export function Price() {
                 Baby
               </Text>
               <Text fontWeight="500" fontSize="sm" color="blueLetter.500">
-                (Até 4 anos)
+                (Entre 2 e 4 anos)
               </Text>
               <Divider colorScheme={'blue'} />
             </Box>
@@ -87,10 +94,40 @@ export function Price() {
                 R$
               </Text>
               <Text fontSize="4xl" fontWeight="600">
-                Zero
+                {!!priceChild[0] ? `${priceChild[0]},00` : '50,00'}
               </Text>
             </HStack>
             <Text fontSize="sm" fontWeight="600" color="blueLetter.500"></Text>
+          </Box>
+        </PriceWrapper> */}
+        <PriceWrapper>
+          <Box
+            py={4}
+            px={12}
+            bg="white"
+            borderRadius={'8px'}
+            mb={isWideVersion ? '' : '-1rem'}
+          >
+            <Box>
+              <Text fontWeight="500" fontSize="xl" color="blueLetter.500">
+                Baby
+              </Text>
+              <Text fontWeight="500" fontSize="sm" color="blueLetter.500">
+                (Entre 2 e 4 anos)
+              </Text>
+              <Divider colorScheme={'blue'} />
+            </Box>
+            <HStack justifyContent="center" color={'orange.400'}>
+              <Text fontSize="3xl" fontWeight="600">
+                R$
+              </Text>
+              <Text fontSize="4xl" fontWeight="600">
+                {!!priceChild[0] ? `${priceChild[0]},00` : '50,00'}
+              </Text>
+            </HStack>
+            <Text fontSize="sm" fontWeight="600" color="blueLetter.500">
+              PIX
+            </Text>
           </Box>
         </PriceWrapper>
 
@@ -110,7 +147,7 @@ export function Price() {
                 R$
               </Text>
               <Text fontSize="4xl" fontWeight="600">
-                135,00
+                {!!priceTeen[0] ? `${priceTeen[0]},00` : '135,00'}
               </Text>
             </HStack>
             <Text fontSize="sm" fontWeight="600" color="blueLetter.500">
@@ -135,7 +172,7 @@ export function Price() {
                 R$
               </Text>
               <Text fontSize="4xl" fontWeight="600">
-                185,00
+                {!!priceAdult[0] ? `${priceAdult[0]},00` : '185,00'}
               </Text>
             </HStack>
             <Text fontSize="sm" fontWeight="600" color="blueLetter.500">
@@ -166,7 +203,15 @@ export function Price() {
               </Text>
             </Flex>
             <Flex w="300px" align="center" justify="center" ml="1.7rem">
-              <Button colorScheme="blue" fontSize="2xl" w="12rem">
+              <Button
+                colorScheme="blue"
+                fontSize="2xl"
+                w="12rem"
+                isDisabled={inscricaoAtiva == 'yes' ? false : true}
+                onClick={() => {
+                  inscricaoAtiva == 'yes' ? navigate('/inscricao') : '';
+                }}
+              >
                 Inscreva-se
               </Button>
             </Flex>
@@ -178,21 +223,21 @@ export function Price() {
               direction="column"
               color={'white'}
             >
-              <Text
+              {/* <Text
                 fontSize="1.25rem"
                 textAlign="center"
                 fontWeight="bold"
                 lineHeight="1.55rem"
               >
                 PROMOÇÃO
-              </Text>
+              </Text> */}
               <Text
                 fontSize="1.25rem"
                 textAlign="center"
                 fontWeight="bold"
                 lineHeight="1.55rem"
               >
-                Forme um grupo de 10 pessoas e ganhe 1 cortesia
+                Menores de 2 anos: entrada franca
               </Text>
             </Flex>
           </SimpleGrid>
@@ -222,25 +267,32 @@ export function Price() {
               direction="column"
               color={'white'}
             >
-              <Text
+              {/* <Text
                 fontSize="1.25rem"
                 textAlign="center"
                 fontWeight="bold"
                 lineHeight="1.55rem"
               >
                 PROMOÇÃO
-              </Text>
+              </Text> */}
               <Text
                 fontSize="1.25rem"
                 textAlign="center"
                 fontWeight="bold"
                 lineHeight="1.55rem"
               >
-                Forme um grupo de 10 pessoas e ganhe 1 cortesia
+                Menores de 2 anos: entrada franca
               </Text>
             </Flex>
             <Flex w="300px" align="center" justify="center">
-              <Button colorScheme="blue" fontSize="2xl">
+              <Button
+                colorScheme="blue"
+                fontSize="2xl"
+                isDisabled={inscricaoAtiva == 'yes' ? false : true}
+                onClick={() => {
+                  inscricaoAtiva == 'yes' ? navigate('/inscricao') : '';
+                }}
+              >
                 Inscreva-se
               </Button>
             </Flex>

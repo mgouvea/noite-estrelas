@@ -85,7 +85,7 @@ export function Atividades() {
               direction={{ base: 'column', sm: 'row' }}
               justify={'right'}
             >
-              <Button
+              {/* <Button
                 rounded={'8px'}
                 size={'md'}
                 fontWeight={'normal'}
@@ -95,7 +95,7 @@ export function Atividades() {
                 _hover={{ bg: 'blue.500' }}
               >
                 Saiba mais
-              </Button>
+              </Button> */}
             </Stack>
           </Stack>
         </Stack>

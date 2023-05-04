@@ -18,6 +18,7 @@ interface TextAreaProps {
   notRequired?: boolean;
   requiredColor?: string;
   hasRule?: boolean;
+  width?: string;
 }
 
 const TextArea = ({
@@ -32,6 +33,7 @@ const TextArea = ({
   notRequired = false,
   requiredColor = '#0061C6',
   hasRule = true,
+  width,
   ...props
 }: TextAreaProps) => {
   const {
@@ -57,6 +59,7 @@ const TextArea = ({
       <FormTextArea
         {...props}
         value={value}
+        width={width}
         placeholder={placeholder}
         onChange={(event) => {
           if (onChangeDefault) onChangeDefault(event.target.value);

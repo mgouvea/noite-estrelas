@@ -8,18 +8,26 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 import { Navbar } from '../Navbar';
+import { useNavigate } from 'react-router-dom';
 
 import logo from '../../assets/logo.svg';
 import bgInicio from '../../assets/fundoInicio.svg';
 
-export function Header() {
+export function Header({
+  inscricaoAtiva,
+  priceChild,
+  priceTeen,
+  priceAdult,
+}: any) {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
   });
+  let navigate = useNavigate();
+
   return (
     <>
-      <Navbar />
+      <Navbar inscricaoAtiva={inscricaoAtiva} />
       <Box
         textAlign="left"
         // pt={'15rem'}
@@ -74,6 +82,10 @@ export function Header() {
           w={isWideVersion ? '10rem' : '9rem'}
           // w="10rem"
           fontSize={'lg'}
+          isDisabled={inscricaoAtiva == 'yes' ? false : true}
+          onClick={() => {
+            inscricaoAtiva == 'yes' ? navigate('/inscricao') : '';
+          }}
         >
           Inscreva-se
         </Button>

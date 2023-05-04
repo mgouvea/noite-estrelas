@@ -9,6 +9,7 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 import { Gallery } from './Gallery';
+import moment from 'moment';
 import {
   barracaIcon,
   cameraIcon,
@@ -23,19 +24,19 @@ import {
   sunriseIcon,
 } from '../../utils/icons';
 
-export function Timeline() {
+export function Timeline({ dataEvento }: any) {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
   });
+
+  console.log(dataEvento[0]);
   return (
     <Flex direction="column" h="100%" bg="iceWhite">
       <SimpleGrid columns={1}>
         {isWideVersion ? (
           <Flex direction="column" align={'center'}>
-            <Box w="50rem">
-              <Gallery />
-            </Box>
+            <Box w="50rem">{/* <Gallery /> */}</Box>
           </Flex>
         ) : (
           ''
@@ -50,6 +51,18 @@ export function Timeline() {
         >
           <Heading fontSize="2.25rem" fontWeight="bold">
             Cronograma
+          </Heading>
+          <Heading
+            display="inline-block"
+            as="h2"
+            size={dataEvento[0] ? 'lg' : 'md'}
+            bgGradient="linear(to-r, gray.500, gray.600)"
+            backgroundClip="text"
+            mt="0.5rem"
+          >
+            {dataEvento[0]
+              ? moment(dataEvento[0]).format('DD/MM/YYYY')
+              : 'Aguarde divulgação'}
           </Heading>
 
           <SimpleGrid spacing="1" mt="2rem">

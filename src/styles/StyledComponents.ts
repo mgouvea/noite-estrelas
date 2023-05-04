@@ -27,6 +27,7 @@ interface StyleProps {
   disabled?: string;
   cursor?: string;
   background?: string;
+  register?: any;
 }
 
 export const MainContainer = styled.div<StyleProps>`
@@ -124,7 +125,7 @@ export const FormItemContainer = styled.div<StyleProps>`
   display: flex;
   flex-direction: column;
   margin-block-end: 1.125rem;
-  margin-block-start: 0.3rem;
+  /* margin-block-start: 0.3rem; */
   width: ${(props) => props?.width ?? 'inherit'};
   margin-left: ${(props) => props?.left};
   margin-top: ${(props) => props?.top};
@@ -217,8 +218,8 @@ export const FormTextArea = styled.textarea<StyleProps>`
   padding: 6px 11px;
   font-size: 14px;
   line-height: 17px;
-  min-width: 25rem;
-  width: 25.5rem;
+  /* min-width: 25rem; */
+  width: ${(props) => props?.width ?? '25.5rem'} !important;
   height: 7rem;
   resize: none;
   outline-offset: 0px;
