@@ -2,10 +2,12 @@ import { Box, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react';
 import { Perguntas } from './Perguntas';
 
 import bgCeuImg from '../../assets/ceuEstreladoAzulClaro.png';
+import { forwardRef } from 'react';
 
-export function Faqs() {
+function Faqs({}, ref: any) {
   return (
     <SimpleGrid
+      ref={ref}
       h={[null, '43.75rem']}
       bg="bgGray"
       columns={[1, 2]}
@@ -46,3 +48,5 @@ export function Faqs() {
     </SimpleGrid>
   );
 }
+
+export default forwardRef(Faqs);

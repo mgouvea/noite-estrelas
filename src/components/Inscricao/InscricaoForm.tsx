@@ -17,7 +17,6 @@ import {
   List,
   Text,
   useBreakpointValue,
-  useDisclosure,
   Badge,
   SimpleGrid,
   Image,
@@ -87,8 +86,6 @@ export function InscricaoForm({
   const [dataQR, setDataQR] = useState();
   const [dataPastePix, setDataPastePix] = useState('');
 
-  const [hasError, setHasError] = useState(false);
-
   const { hasCopied, onCopy } = useClipboard(dataPastePix);
 
   const headers = {
@@ -96,63 +93,6 @@ export function InscricaoForm({
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
   };
-
-  // let idPayment = '';
-  // let statusPayment = '';
-
-  // const handlePix = async (name: any, email: any, cpf: any) => {
-  //   await pix
-  //     .post(
-  //       '/',
-  //       {
-  //         transaction_amount: value,
-  //         payment_method_id: 'pix',
-  //         payer: {
-  //           first_name: firstName(name),
-  //           last_name: lastName(name),
-  //           email: email,
-  //           identification: {
-  //             type: 'CPF',
-  //             number: cpf,
-  //           },
-  //         },
-  //         description: 'Inscrição Noite nas Estrelas',
-  //       },
-  //       { headers }
-  //     )
-  //     .then(function (response) {
-  //       setHasError(false);
-  //       setPixId(response?.data?.id);
-  //       idPayment = response?.data?.id;
-  //       statusPayment = response?.data?.status;
-  //       setDataQR(
-  //         response?.data?.point_of_interaction?.transaction_data?.qr_code_base64
-  //       );
-  //       setDataPastePix(
-  //         response?.data?.point_of_interaction?.transaction_data?.qr_code
-  //       );
-  //       sethasPix(true);
-
-  //       setPaymentStatus(response?.data?.status);
-
-  //       return response?.data.send(200);
-  //     })
-  //     .catch(function (error) {
-  //       console.error('err', error);
-  //       setHasError(true);
-  //     });
-  // };
-
-  // const newFormTimeout = (data: any, status: any, id: any) => {
-  //   const newDataForm = {
-  //     ...data,
-  //     statusPayment: status,
-  //     idPayment: id,
-  //     qtdInscritos: qtdInscricao,
-  //   };
-
-  //   return newDataForm;
-  // };
 
   const submitForm = async (dataForm: any) => {
     setHasQRPix(true);
@@ -177,7 +117,6 @@ export function InscricaoForm({
         { headers }
       )
       .then(async function (response) {
-        setHasError(false);
         setDataQR(
           response?.data?.point_of_interaction?.transaction_data?.qr_code_base64
         );
@@ -191,6 +130,7 @@ export function InscricaoForm({
           statusPayment: response?.data?.status,
           idPayment: response?.data?.id,
           qtdInscritos: qtdInscricao,
+          dataEvento: `${moment(dataEvento[0]).format('DD/MM/YYYY')}`,
         };
 
         await api
@@ -198,7 +138,6 @@ export function InscricaoForm({
             headers,
           })
           .then(function () {
-            setHasError(false);
             toast({
               title: 'Atenção ',
               description:
@@ -211,7 +150,6 @@ export function InscricaoForm({
           })
           .catch(function (err) {
             console.log(err);
-            setHasError(true);
             toast({
               title: 'Erro',
               description: 'Ocorreu um erro, tente novamente mais tarde',
@@ -226,7 +164,6 @@ export function InscricaoForm({
       })
       .catch(function (error) {
         console.error('err', error);
-        setHasError(true);
       });
   };
 
@@ -550,6 +487,16 @@ export function InscricaoForm({
   };
 
   const Form3 = () => {
+    const optionsBarracas = [
+      '2 Lugares - R$ 50,00',
+      '3 Lugares - R$ 85,00',
+      '4 Lugares - R$ 135,00',
+    ];
+    const optionsQuartos = [
+      'Dormitório Coletivo (Beliches) - R$ 35,00',
+      'Quarto 1 (4 beliches) - R$ 150,00',
+    ];
+
     return (
       <Box>
         <Flex justify={'space-between'} align={'center'} mt="1rem">
@@ -560,58 +507,46 @@ export function InscricaoForm({
             bgGradient="linear(to-r, #314886, #1baae7)"
             backgroundClip="text"
           >
-            Alugar Equipamentos:
+            Aluguel de Quartos e Barracas:
           </Heading>
         </Flex>
+        <Text color="red.500" fontSize="xs" mt="0.3rem">
+          Opcional
+        </Text>
         <Divider />
         {/* LINHA 1 */}
-        <Flex>
+        <Flex flexDirection={isWideVersion ? 'row' : 'column'}>
           <FormControl mr="5%">
             <FormLabel htmlFor="nome" fontWeight={'normal'}>
-              Barraca
+              <Flex>
+                Barracas{' '}
+                <Text color="red.500" fontSize="sm" mt="0.15rem" ml="0.3rem">
+                  (Não será fornecido colchonetes)
+                </Text>
+              </Flex>
             </FormLabel>
             <Select
-              name="participou"
-              options={fields.length > 1 ? options1Plural : options1Singluar}
+              name="barraca"
+              options={optionsBarracas}
               returnItem
               control={control}
-              rules={{ ...valueIsRequired() }}
             />
-            {/* <Input
-              name={`users.${participanteIndex}.nome`}
-              control={control}
-              rules={{ ...valueIsRequired() }}
-              placeholder="Nome Completo"
-            /> */}
           </FormControl>
 
           <FormControl>
             <FormLabel htmlFor="email" fontWeight={'normal'}>
-              {fields.length > 1
-                ? 'Como ficaram sabendo do Noite nas Estrelas?'
-                : 'Como ficou sabendo do Noite nas Estrelas'}
+              <Flex>
+                Quartos{' '}
+                <Text color="red.500" fontSize="sm" mt="0.15rem" ml="0.3rem">
+                  (Levar lençol e cobertores)
+                </Text>
+              </Flex>
             </FormLabel>
             <Select
-              name="sabendo"
-              options={options2}
+              name="quarto"
+              options={optionsQuartos}
               returnItem
               control={control}
-              rules={{ ...valueIsRequired() }}
-            />
-          </FormControl>
-        </Flex>
-
-        {/* LINHA 2 */}
-        <Flex justify={'space-between'}>
-          <FormControl mr="5%">
-            <FormLabel htmlFor="nome" fontWeight={'normal'}>
-              Alguma observação importante?
-            </FormLabel>
-            <TextArea
-              name="regrasServico"
-              control={control}
-              // rules={{ ...valueIsRequired() }}
-              placeholder="Conte-nos o que precisa"
             />
           </FormControl>
         </Flex>
@@ -773,10 +708,7 @@ export function InscricaoForm({
 
   const InscricaoPage = () => {
     return (
-      <Flex
-        direction={!isWideVersion ? 'column' : 'row'}
-        border="1px solid red"
-      >
+      <Flex direction={!isWideVersion ? 'column' : 'row'}>
         <Box
           bg="gray.300"
           border="1px solid #1baae7"
@@ -924,6 +856,7 @@ export function InscricaoForm({
             </List>
           ))}
           <Form2 plural={fields} />
+          <Form3 />
 
           <ButtonGroup mt="5%" w="100%">
             <Flex w="100%" justifyContent="space-between">

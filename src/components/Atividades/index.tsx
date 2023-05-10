@@ -5,23 +5,18 @@ import {
   Box,
   Heading,
   Text,
-  Button,
   Image,
-  Icon,
-  IconButton,
-  createIcon,
-  IconProps,
-  useColorModeValue,
-  Img,
 } from '@chakra-ui/react';
 import OqOferece from './OqOferece';
 
 import visionImg from '../../assets/telescopeVision.png';
 import bgEstrelado from '../../assets/ceuEstreladoAzul.png';
+import { forwardRef } from 'react';
 
-export function Atividades() {
+function Atividades({}, ref: any) {
   return (
     <Box
+      ref={ref}
       bgImage={bgEstrelado}
       // bgRepeat="no-repeat"
       bgSize={'contain'}
@@ -104,3 +99,5 @@ export function Atividades() {
     </Box>
   );
 }
+
+export default forwardRef(Atividades);

@@ -36,6 +36,7 @@ const createCupomSchema = z.object({
   ativo: z.string(),
   cupom: z.string().nonempty('O cupom é obrogatório').toUpperCase(),
   porcemCupom: z.coerce.number().nonnegative().int(),
+  valorDesconto: z.coerce.number().nonnegative().int(),
 });
 
 type CreateCupomFormData = z.infer<typeof createCupomSchema>;
@@ -93,6 +94,7 @@ export function Cupom() {
   };
 
   const putOrPost = async (hasId: boolean, myData: CreateCupomFormData) => {
+    console.log('putOrPost', myData);
     setIsLoading(true);
     if (hasId) {
       await api
@@ -274,11 +276,22 @@ export function Cupom() {
                   type="number"
                   {...register('porcemCupom')}
                 />
-                {errors.porcemCupom && (
-                  <Text color="red.400" fontSize={'sm'} pt="0.2rem">
-                    {errors.porcemCupom.message}
-                  </Text>
-                )}
+              </FormControl>
+              <FormControl>
+                <Text
+                  textAlign={'start'}
+                  pl="0.2rem"
+                  pb="0.2rem"
+                  fontSize={'md'}
+                >
+                  R$ Desconto:
+                </Text>
+                <Input
+                  placeholder={!!hasCupom ? cupomPorcemData : '10'}
+                  size="md"
+                  type="number"
+                  {...register('valorDesconto')}
+                />
               </FormControl>
             </Stack>
           </Stack>
@@ -312,6 +325,7 @@ export function Cupom() {
             <Tr>
               <Th>Código</Th>
               <Th>% Desconto</Th>
+              <Th>R$ Desconto</Th>
               <Th>Ativo</Th>
               <Th>Açoes</Th>
             </Tr>
@@ -321,6 +335,7 @@ export function Cupom() {
               <Tr>
                 <Td textAlign={'center'}>{i.cupom}</Td>
                 <Td textAlign={'center'}>{i.porcemCupom}</Td>
+                <Td textAlign={'center'}>{i.valorDesconto}</Td>
                 <Td textAlign={'center'}>
                   {i.ativo === 'yes' ? 'Sim' : 'Não'}
                 </Td>

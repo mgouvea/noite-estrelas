@@ -10,7 +10,7 @@ import {
   useColorModeValue,
   VisuallyHidden,
 } from '@chakra-ui/react';
-import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import { FaInstagram, FaWhatsapp, FaYoutube } from 'react-icons/fa';
 import { ReactNode } from 'react';
 
 import { Link as ReactRouter } from 'react-router-dom';
@@ -61,9 +61,17 @@ export function Footer() {
         justify={'center'}
         align={'center'}
       >
-        {/* <Img src={} w="9rem" /> */}
         <Stack direction={'row'} spacing={6}>
-          <Link as={ReactRouter} to={'/'} style={{ textDecoration: 'none' }}>
+          <SocialButton label={'Twitter'} href={'#'}>
+            <FaWhatsapp />
+          </SocialButton>
+          <SocialButton label={'YouTube'} href={'#'}>
+            <FaYoutube />
+          </SocialButton>
+          <SocialButton label={'Instagram'} href={'#'}>
+            <FaInstagram />
+          </SocialButton>
+          {/* <Link as={ReactRouter} to={'/'} style={{ textDecoration: 'none' }}>
             <Text _hover={{ color: 'blue.400' }}>Início</Text>
           </Link>
           <Link
@@ -93,7 +101,7 @@ export function Footer() {
             style={{ textDecoration: 'none' }}
           >
             <Text _hover={{ color: 'blue.400' }}>Contato</Text>
-          </Link>
+          </Link> */}
         </Stack>
       </Container>
 

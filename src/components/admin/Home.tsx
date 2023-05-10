@@ -33,7 +33,7 @@ export function Home({ nameUser }: homeProps) {
         </Flex>
         <Text color="orange.400">{welcomeMessage}</Text>
       </Flex>
-      <Flex mt="2rem" maxW={'7xl'} px="2rem" border="1px solid red">
+      <Flex mt="2rem" maxW={'7xl'} px="2rem">
         <Tabs variant="enclosed" colorScheme="orange">
           <TabList>
             <Tab>Evento</Tab>

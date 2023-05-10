@@ -23,16 +23,17 @@ import {
   planetIcon,
   sunriseIcon,
 } from '../../utils/icons';
+import { forwardRef } from 'react';
 
-export function Timeline({ dataEvento }: any) {
+function Timeline({ dataEvento }: any, ref: any) {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
   });
 
-  console.log(dataEvento[0]);
+  // console.log(dataEvento[0]);
   return (
-    <Flex direction="column" h="100%" bg="iceWhite">
+    <Flex ref={ref} direction="column" h="100%" bg="iceWhite">
       <SimpleGrid columns={1}>
         {isWideVersion ? (
           <Flex direction="column" align={'center'}>
@@ -339,3 +340,5 @@ export function Timeline({ dataEvento }: any) {
     </Flex>
   );
 }
+
+export default forwardRef(Timeline);

@@ -12,13 +12,9 @@ import { useNavigate } from 'react-router-dom';
 
 import logo from '../../assets/logo.svg';
 import bgInicio from '../../assets/fundoInicio.svg';
+import { forwardRef } from 'react';
 
-export function Header({
-  inscricaoAtiva,
-  priceChild,
-  priceTeen,
-  priceAdult,
-}: any) {
+function Header({ inscricaoAtiva }: any, ref: any) {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
@@ -27,8 +23,8 @@ export function Header({
 
   return (
     <>
-      <Navbar inscricaoAtiva={inscricaoAtiva} />
       <Box
+        ref={ref}
         textAlign="left"
         // pt={'15rem'}
         pl={isWideVersion ? '10rem' : '2rem'}
@@ -93,3 +89,5 @@ export function Header({
     </>
   );
 }
+
+export default forwardRef(Header);
